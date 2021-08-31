@@ -126,8 +126,9 @@ public class SimpleArrayListTest {
     }
 
     @Test
-    public void whenZeroCapacity() {
+    public void whenArrayInitialHas0Element() {
         List<Integer> list = new SimpleArrayList<>(0);
-        Assert.assertEquals(0, list.size());
+        list.add(1);
+        Assert.assertTrue(list.iterator().hasNext());
     }
 }
