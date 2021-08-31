@@ -124,4 +124,10 @@ public class SimpleArrayListTest {
         list.add(0);
         iterator.next();
     }
+
+    @Test
+    public void whenZeroCapacity() {
+        List<Integer> list = new SimpleArrayList<>(0);
+        Assert.assertEquals(0, list.size());
+    }
 }

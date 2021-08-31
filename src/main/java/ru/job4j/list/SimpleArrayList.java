@@ -10,14 +10,16 @@ public class SimpleArrayList<T> implements List<T> {
 
     private int modCount;
 
+    private final static int DEFAULT_CAPACITY = 10;
+
     public SimpleArrayList(int capacity) {
-        this.container = (T[]) new Object[capacity];
+        this.container = (T[]) new Object[capacity <= 0 ? DEFAULT_CAPACITY : capacity];
     }
 
     @Override
     public void add(T value) {
         if (size == container.length) {
-            container = Arrays.copyOf(container, size * 2);
+            grow();
         }
         container[size++] = value;
         modCount++;
@@ -84,5 +86,9 @@ public class SimpleArrayList<T> implements List<T> {
                 return container[index++];
             }
         };
+    }
+
+    private void grow() {
+        container = Arrays.copyOf(container, size * 2);
     }
 }
