@@ -1,4 +1,4 @@
-package ru.job4j.linkedlist;
+package ru.job4j.collections.linkedlist;
 
 public interface List<E> extends Iterable<E> {
 

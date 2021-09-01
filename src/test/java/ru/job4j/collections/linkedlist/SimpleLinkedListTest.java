@@ -1,4 +1,4 @@
-package ru.job4j.linkedlist;
+package ru.job4j.collections.linkedlist;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
