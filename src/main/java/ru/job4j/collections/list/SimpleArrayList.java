@@ -12,6 +12,10 @@ public class SimpleArrayList<T> implements List<T> {
 
     private final static int DEFAULT_CAPACITY = 10;
 
+    public SimpleArrayList() {
+        this.container = (T[]) new Object[DEFAULT_CAPACITY];
+    }
+
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new Object[capacity <= 0 ? DEFAULT_CAPACITY : capacity];
     }
