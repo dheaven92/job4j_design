@@ -3,6 +3,7 @@ package ru.job4j.collections.map.mymap;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleMap<K, V> implements Map<K, V> {
 
@@ -15,12 +16,12 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
+        if (count >= capacity * LOAD_FACTOR) {
+            grow();
+        }
         int index = hash(key);
         if (table[index] != null) {
             return false;
-        }
-        if (count >= capacity * LOAD_FACTOR) {
-            grow();
         }
         table[index] = new MapEntry<>(key, value);
         count++;
@@ -31,7 +32,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         int index = hash(key);
-        if (table[index] == null) {
+        if (table[index] == null || !Objects.equals(table[index].key, key)) {
             return null;
         }
         return table[index].value;
@@ -40,7 +41,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public boolean remove(K key) {
         int index = hash(key);
-        if (table[index] == null) {
+        if (table[index] == null || !Objects.equals(table[index].key, key)) {
             return false;
         }
         table[index] = null;
