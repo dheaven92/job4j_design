@@ -10,27 +10,18 @@ public class Analize {
         int addCount = 0;
         int modCount = 0;
         int delCount = 0;
-        Map<Integer, User> currMap = new HashMap<>();
-        for (User user : current) {
-            currMap.put(user.getId(), user);
-        }
         Map<Integer, User> prevMap = new HashMap<>();
         for (User user : previous) {
             prevMap.put(user.getId(), user);
         }
-        for (User prevUser : previous) {
-            User currUser = currMap.get(prevUser.getId());
-            if (currUser == null) {
-                delCount++;
-            } else if (!currUser.equals(prevUser)) {
-                modCount++;
-            }
-        }
         for (User currUser : current) {
-            User prevUser = prevMap.get(currUser.getId());
+            User prevUser = prevMap.remove(currUser.getId());
             if (prevUser == null) {
                 addCount++;
+            } else if (!prevUser.equals(currUser)) {
+                modCount++;
             }
+            delCount = prevMap.size();
         }
         return new Info(addCount, modCount, delCount);
     }
