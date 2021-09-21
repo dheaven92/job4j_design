@@ -38,7 +38,7 @@ public class Analizy {
 
     private LogLine getLogLine(String line) {
         try {
-            String[] parts = line.split("\s");
+            String[] parts = line.split("\\s");
             return new LogLine(parts[0], parts[1]);
         } catch (Exception e) {
             e.printStackTrace();
