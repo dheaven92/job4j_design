@@ -10,8 +10,12 @@ import java.util.function.Predicate;
 public class Search {
 
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
-        search(start, p -> p.toFile().getName().endsWith("js"))
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Root folder and file extension are required. "
+                    + "Usage java -jar dir.jar ROOT_FOLDER FILE_EXTENSION.");
+        }
+        Path start = Paths.get(args[0]);
+        search(start, p -> p.toFile().getName().endsWith(args[1]))
                 .forEach(System.out::println);
     }
 
