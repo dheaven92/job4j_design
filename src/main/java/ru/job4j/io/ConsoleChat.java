@@ -25,26 +25,29 @@ public class ConsoleChat {
         List<String> logs = new ArrayList<>();
         boolean isAppRunning = true;
         boolean isBotRunning = true;
-        Scanner in = new Scanner(System.in);
         Random random = new Random();
         System.out.println("Задай вопрос:");
-        while (isAppRunning) {
-            String question = in.nextLine();
-            logs.add(question);
-            if (question.equals(OUT)) {
-                isAppRunning = false;
+        try (Scanner in = new Scanner(System.in)) {
+            while (isAppRunning) {
+                String question = in.nextLine();
+                logs.add(question);
+                if (question.equals(OUT)) {
+                    isAppRunning = false;
+                }
+                if (question.equals(STOP)) {
+                    isBotRunning = false;
+                }
+                if (question.equals(CONTINUE)) {
+                    isBotRunning = true;
+                }
+                if (isBotRunning && isAppRunning) {
+                    String answer = botAnswers.get(random.nextInt(botAnswers.size()));
+                    System.out.println(answer);
+                    logs.add(answer);
+                }
             }
-            if (question.equals(STOP)) {
-                isBotRunning = false;
-            }
-            if (question.equals(CONTINUE)) {
-                isBotRunning = true;
-            }
-            if (isBotRunning && isAppRunning) {
-                String answer = botAnswers.get(random.nextInt(botAnswers.size()));
-                System.out.println(answer);
-                logs.add(answer);
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         saveLog(logs);
     }
