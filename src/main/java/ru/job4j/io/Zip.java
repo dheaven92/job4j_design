@@ -35,6 +35,9 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Arguments -d and -o are required.");
+        }
         ArgsName argNames = ArgsName.of(args);
         if (validateArgs(argNames)) {
             String extension = argNames.get("e");
