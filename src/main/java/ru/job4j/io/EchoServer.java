@@ -9,6 +9,9 @@ import java.net.Socket;
 
 public class EchoServer {
 
+    private static final String GET_MSG_PARAM = "GET /?msg=";
+    private static final String HELLO_TEXT = "Hello";
+
     public static void main(String[] args) throws IOException {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
@@ -19,8 +22,15 @@ public class EchoServer {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
                         System.out.println(str);
-                        if (str.contains("Bye")) {
+                        if (str.contains("Exit")) {
                             server.close();
+                            continue;
+                        }
+                        if (str.startsWith(GET_MSG_PARAM) && str.contains(HELLO_TEXT)) {
+                            out.write((HELLO_TEXT + "\n").getBytes());
+                        }
+                        if (str.startsWith(GET_MSG_PARAM) && !str.contains(HELLO_TEXT)) {
+                            out.write("What\n".getBytes());
                         }
                     }
                     out.flush();
