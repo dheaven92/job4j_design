@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<visa_application identifier="8a9003e3" priority="1" >
+    <declarant first_name="Bob" last_name="Smith" age="38" has_job="true">
+        <documents>
+            <document>passport</document>
+            <document>driver license</document>
+        </documents>
+    </declarant>
+</visa_application>
