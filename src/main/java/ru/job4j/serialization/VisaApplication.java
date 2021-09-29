@@ -27,6 +27,18 @@ public class VisaApplication {
         this.declarant = declarant;
     }
 
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public Declarant getDeclarant() {
+        return declarant;
+    }
+
     @Override
     public String toString() {
         return "VisaApplication{"

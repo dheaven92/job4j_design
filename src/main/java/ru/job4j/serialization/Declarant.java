@@ -35,6 +35,26 @@ public class Declarant {
         this.documents = documents;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isHasJob() {
+        return hasJob;
+    }
+
+    public List<String> getDocuments() {
+        return documents;
+    }
+
     @Override
     public String toString() {
         return "Declarant{"
