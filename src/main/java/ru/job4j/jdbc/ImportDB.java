@@ -43,16 +43,16 @@ public class ImportDB {
                 cfg.getProperty("db.login"),
                 cfg.getProperty("db.password")
         )) {
+            try (Statement s = cnt.createStatement()) {
+                s.execute(
+                        "create table if not exists users ("
+                                + "id serial primary key, "
+                                + "name varchar (256), "
+                                + "email varchar (256)"
+                                + ");"
+                );
+            }
             for (User user : users) {
-                try (Statement s = cnt.createStatement()) {
-                    s.execute(
-                    "create table if not exists users ("
-                            + "id serial primary key, "
-                            + "name varchar (256), "
-                            + "email varchar (256)"
-                            + ");"
-                    );
-                }
                 try (PreparedStatement ps = cnt.prepareStatement("insert into users (name, email) values (?, ?)")) {
                     ps.setString(1, user.name);
                     ps.setString(2, user.email);
