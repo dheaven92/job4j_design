@@ -74,9 +74,7 @@ public class ImportDB {
 
     public static void main(String[] args) throws Exception {
         Properties cfg = new Properties();
-        try (FileInputStream in = new FileInputStream(
-                ClassLoader.getSystemResource("app.properties").getFile())
-        ) {
+        try (FileInputStream in = new FileInputStream("./src/main/resources/app.properties")) {
             cfg.load(in);
         }
         ImportDB db = new ImportDB(cfg, "./data/dump.txt");
