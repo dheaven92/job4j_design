@@ -46,13 +46,11 @@ public class ImportDB {
             for (User user : users) {
                 try (Statement s = cnt.createStatement()) {
                     s.execute(
-                    """
-                            create table if not exists users(
-                                id serial primary key,\s
-                                name varchar (256),\s
-                                email varchar (256)
-                            );
-                        """
+                    "create table if not exists users ("
+                            + "id serial primary key, "
+                            + "name varchar (256), "
+                            + "email varchar (256)"
+                            + ");"
                     );
                 }
                 try (PreparedStatement ps = cnt.prepareStatement("insert into users (name, email) values (?, ?)")) {
