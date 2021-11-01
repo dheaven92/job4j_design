@@ -3,6 +3,7 @@ package ru.job4j.ood.tdd.cinema;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -29,6 +30,7 @@ public class CinemaTest {
         assertThat(sessions, is(Arrays.asList(new Session3D())));
     }
 
+    @Ignore
     @Test
     public void add() {
         Cinema cinema = new Cinema3D();
