@@ -12,6 +12,7 @@ import java.util.List;
 
 public class CinemaTest {
 
+    @Ignore
     @Test
     public void buy() {
         Account account = new AccountCinema();
@@ -22,6 +23,7 @@ public class CinemaTest {
         assertThat(ticket, is(new Ticket3D()));
     }
 
+    @Ignore
     @Test
     public void find() {
         Cinema cinema = new Cinema3D();
