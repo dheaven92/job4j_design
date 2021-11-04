@@ -1,15 +1,11 @@
-package ru.job4j.ood.srp;
+package ru.job4j.ood.report;
 
 import org.junit.Test;
-import ru.job4j.ood.report.Employee;
-import ru.job4j.ood.report.HtmlEngine;
-import ru.job4j.ood.report.MemStore;
-import ru.job4j.ood.report.Report;
 
 import java.util.Calendar;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class HtmlEngineTest {
 
