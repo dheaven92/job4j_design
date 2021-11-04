@@ -1,6 +1,10 @@
 package ru.job4j.ood.srp;
 
 import org.junit.Test;
+import ru.job4j.ood.report.Employee;
+import ru.job4j.ood.report.HrEngine;
+import ru.job4j.ood.report.MemStore;
+import ru.job4j.ood.report.Report;
 
 import java.util.Calendar;
 
