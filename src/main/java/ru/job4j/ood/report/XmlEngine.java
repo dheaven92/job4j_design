@@ -21,7 +21,7 @@ public class XmlEngine implements Report {
             JAXBContext jaxbContext = JAXBContext.newInstance(Employees.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             try (StringWriter out = new StringWriter()) {
-                List<Employee> employees = store.findBy(em -> true);
+                List<Employee> employees = store.findBy(filter);
                 marshaller.marshal(new Employees(employees), out);
                 xml = out.getBuffer().toString();
             }

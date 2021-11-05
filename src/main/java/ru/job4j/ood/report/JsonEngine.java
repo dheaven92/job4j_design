@@ -14,6 +14,6 @@ public class JsonEngine implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        return new Gson().toJson(store.findBy(em -> true));
+        return new Gson().toJson(store.findBy(filter));
     }
 }
