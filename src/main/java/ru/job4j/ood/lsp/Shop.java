@@ -8,6 +8,19 @@ public class Shop implements Store {
     private static final List<Food> STORAGE = new LinkedList<>();
 
     @Override
+    public boolean isFit(Food food) {
+        int percentage = FoodUtil.getCurrentExpirationPercentage(food);
+        if (percentage >= 25 && percentage <= 75) {
+            return true;
+        }
+        if (percentage > 75 && percentage < 100) {
+            food.setDiscount(true);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void add(Food food) {
         STORAGE.add(food);
         System.out.println(food + " got in shop");
