@@ -1,11 +1,12 @@
 package ru.job4j.ood.lsp;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Shop implements Store {
 
-    private static final List<Food> STORAGE = new LinkedList<>();
+    private final List<Food> storage = new LinkedList<>();
 
     @Override
     public boolean isFit(Food food) {
@@ -21,13 +22,17 @@ public class Shop implements Store {
     }
 
     @Override
-    public void add(Food food) {
-        STORAGE.add(food);
-        System.out.println(food + " got in shop");
+    public boolean add(Food food) {
+        if (isFit(food)) {
+            storage.add(food);
+            System.out.println(food + " got in shop");
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<Food> getAllFood() {
-        return STORAGE;
+        return new ArrayList<>(storage);
     }
 }

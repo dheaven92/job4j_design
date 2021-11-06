@@ -6,7 +6,7 @@ public interface Store {
 
     boolean isFit(Food food);
 
-    void add(Food food);
+    boolean add(Food food);
 
     List<Food> getAllFood();
 }
