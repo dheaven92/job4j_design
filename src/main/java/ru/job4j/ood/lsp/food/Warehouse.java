@@ -1,24 +1,24 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.food;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Trash implements Store {
+public class Warehouse implements Store {
 
     private final List<Food> storage = new LinkedList<>();
 
     @Override
     public boolean isFit(Food food) {
         int percentage = FoodUtil.getCurrentExpirationPercentage(food);
-        return percentage >= 100;
+        return percentage < 25;
     }
 
     @Override
     public boolean add(Food food) {
         if (isFit(food)) {
             storage.add(food);
-            System.out.println(food + " got in trash");
+            System.out.println(food + " got in warehouse");
             return true;
         }
         return false;
