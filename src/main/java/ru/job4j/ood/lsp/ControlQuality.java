@@ -11,10 +11,6 @@ public class ControlQuality {
     }
 
     public void control(Food food) {
-        stores.forEach(store -> {
-            if (store.isFit(food)) {
-                store.add(food);
-            }
-        });
+        stores.forEach(store -> store.add(food));
     }
 }
