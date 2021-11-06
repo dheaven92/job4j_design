@@ -11,6 +11,11 @@ public class ControlQuality {
     }
 
     public void control(Food food) {
-        stores.forEach(store -> store.add(food));
+        stores.forEach(store -> {
+            boolean added = store.add(food);
+            if (!added) {
+                System.out.println("Could not store " + food);
+            }
+        });
     }
 }
