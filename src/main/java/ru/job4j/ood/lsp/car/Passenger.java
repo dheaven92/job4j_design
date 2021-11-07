@@ -4,8 +4,8 @@ public class Passenger implements Car {
 
     private final int size;
 
-    public Passenger(int size) {
-        this.size = size;
+    public Passenger() {
+        this.size = 1;
     }
 
     @Override
