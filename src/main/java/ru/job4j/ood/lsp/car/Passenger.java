@@ -2,14 +2,10 @@ package ru.job4j.ood.lsp.car;
 
 public class Passenger implements Car {
 
-    private final int size;
-
-    public Passenger() {
-        this.size = 1;
-    }
+    public static final int PASSENGER_SIZE = 1;
 
     @Override
     public int getSize() {
-        return this.size;
+        return PASSENGER_SIZE;
     }
 }

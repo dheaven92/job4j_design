@@ -5,8 +5,6 @@ import java.util.List;
 
 public class ParkingArea implements Area {
 
-    private final static int TRUCK_LOT_SIZE = 2;
-
     private final int passengerLotsCapacity;
     private final int truckLotsCapacity;
     private final List<Car> passengerLots;
@@ -22,20 +20,18 @@ public class ParkingArea implements Area {
     @Override
     public boolean parkCar(Car car) {
         int freePassengerLots = passengerLotsCapacity - passengerLots.size();
-        if (car.getSize() == 1 && freePassengerLots >= 1) {
+        if (car.getSize() == Passenger.PASSENGER_SIZE && freePassengerLots >= Passenger.PASSENGER_SIZE) {
             passengerLots.add(car);
             return true;
         }
         int freeTruckLots = truckLotsCapacity - truckLots.size();
-        if (car.getSize() == TRUCK_LOT_SIZE && freeTruckLots * TRUCK_LOT_SIZE >= TRUCK_LOT_SIZE) {
+        if (car.getSize() > Passenger.PASSENGER_SIZE && freeTruckLots > 0) {
             truckLots.add(car);
             return true;
         }
-        if (car.getSize() >= TRUCK_LOT_SIZE && freeTruckLots > 0) {
-            int extraCarSpaceRequired = Math.abs(freeTruckLots * TRUCK_LOT_SIZE - car.getSize());
-            if (freePassengerLots >= extraCarSpaceRequired) {
-                truckLots.add(car);
-                for (int i = 0; i < extraCarSpaceRequired; i++) {
+        if (car.getSize() > Passenger.PASSENGER_SIZE && freeTruckLots == 0) {
+            if (freePassengerLots >= car.getSize()) {
+                for (int i = 0; i < car.getSize(); i++) {
                     passengerLots.add(car);
                 }
                 return true;
