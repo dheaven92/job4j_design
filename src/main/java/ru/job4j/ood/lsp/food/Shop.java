@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Shop implements Store {
 
-    private final List<Food> storage = new LinkedList<>();
+    private List<Food> storage = new LinkedList<>();
 
     @Override
     public boolean isFit(Food food) {
@@ -34,5 +34,10 @@ public class Shop implements Store {
     @Override
     public List<Food> getAllFood() {
         return new ArrayList<>(storage);
+    }
+
+    @Override
+    public void clearAllFood() {
+        storage = new LinkedList<>();
     }
 }
