@@ -9,12 +9,7 @@ public class MenuTree implements Menu {
 
     @Override
     public void add(String parentName, String childName, Action action) {
-        Node existingItem = null;
-        if (items.size() > 0) {
-            for (Node item : items) {
-                existingItem = findNodeByName(item, parentName);
-            }
-        }
+        Node existingItem = findNodeByName(parentName);
         if (existingItem != null && childName != null) {
             existingItem.addChild(new Node(childName, action));
         } else {
@@ -28,29 +23,31 @@ public class MenuTree implements Menu {
 
     @Override
     public Action select(String name) {
-        Action action = null;
-        Node foundItem = null;
-        if (items.size() > 0) {
-            for (Node item : items) {
-                foundItem = findNodeByName(item, name);
-            }
-        }
-        if (foundItem != null) {
-            action = foundItem.action;
-        }
-        return action;
+        Node foundItem = findNodeByName(name);
+        return foundItem != null ? foundItem.action : null;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Menu\n");
-        if (items.size() > 0) {
-            for (Node item : items) {
-                appendNode(sb, item, 1);
-            }
+        sb.append("Menu")
+                .append(System.lineSeparator());
+        for (Node item : items) {
+            appendNode(sb, item, 1);
         }
         return sb.toString();
+    }
+
+    private Node findNodeByName(String name) {
+        Node node = null;
+        for (Node item : items) {
+            Node itemNode = findNodeByName(item, name);
+            if (itemNode != null) {
+                node = itemNode;
+                break;
+            }
+        }
+        return node;
     }
 
     private Node findNodeByName(Node item, String name) {
@@ -59,7 +56,10 @@ public class MenuTree implements Menu {
         }
         if (item.children.size() > 0) {
             for (Node child : item.children) {
-                return findNodeByName(child, name);
+                Node childNode = findNodeByName(child, name);
+                if (childNode != null) {
+                    return childNode;
+                }
             }
         }
         return null;
@@ -69,7 +69,7 @@ public class MenuTree implements Menu {
         sb.append("---".repeat(indentation))
                 .append(" ")
                 .append(node.name)
-                .append("\n");
+                .append(System.lineSeparator());
         if (node.children.size() > 0) {
             indentation++;
             for (Node child : node.children) {
